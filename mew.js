@@ -1,5 +1,5 @@
 const Discord = require("discord.js"), // Require Node modules and initialize Discord client
-    beheeyem = new Discord.Client(),
+    mew = new Discord.Client(),
     fs = require("fs"),
     jsonfile = require("jsonfile"),
     path = require("path"),
@@ -16,13 +16,13 @@ Object.keys(dex).map(function(key, index) {
     species.push(dex[key].species.toLowerCase());
 });
 
-console.log("Starting Beheeyem...");
+console.log("Starting Mew...");
 
 var commands = loadCommands(); // Load commands into the commands object
 
-beheeyem.on("ready", function() {
-    console.log(("Beheeyem is active! Currently serving in " + String(beheeyem.guilds.size).white + " guilds.\n".green).bold);
-    beheeyem.user.setActivity("b.help"); //Set "playing" status on the user's profile
+mew.on("ready", function() {
+    console.log(("Mew is online! Currently serving in " + String(mew.guilds.size).white + " guilds.\n".green).bold);
+    mew.user.setActivity("m.help"); //Set "playing" status on the user's profile
 
 
 });
@@ -49,8 +49,8 @@ function loadCommands() {
 }
 
 
-beheeyem.on("message", msg => { // Fires when a message is sent that can be detected by Beheeyem
-    if (msg.author.id != beheeyem.user.id && !msg.author.bot) { // Ensures Beheeyem doesn't detect messages from bots or itself 
+mew.on("message", msg => { // Fires when a message is sent that can be detected by Mew
+    if (msg.author.id != Mew.user.id && !msg.author.bot) { // Ensures Mew doesn't detect messages from bots or itself 
         if (msg.content.startsWith(config.prefix)) { // Check to see if the message is an attempted command
             let commandstring = msg.content.substring(config.prefix.length),
                 cmd = commandstring.split(" ")[0], // Split the message into more readable argument/command portions
@@ -58,13 +58,13 @@ beheeyem.on("message", msg => { // Fires when a message is sent that can be dete
 
             if (commands[cmd]) { // If a command by the name of the attempted name exists, try to fire it
                 try {
-                    commands[cmd].action(msg, args, beheeyem);
+                    commands[cmd].action(msg, args, mew);
                 } catch (err) {
                     console.error(err); // If unsuccessful, log the error.
                 }
                 // TO MOVE TO SEPARATE FILES
             } else if (cmd == "obtain") {
-                msg.channel.send("Honestly, just use Bulbapedia. The encounter data on the web is so inconsistent and undreadable that there's no way I could create an obtainability command. Sorry about that. 🙁");
+                msg.channel.send("Honestly, just use Bulbapedia. The encounter data on the web is so inconsistent and undreadable that there's no way I could create an obtainability command. Sorry about that. ðŸ™");
             } else if (cmd == "deathbird") {
                 msg.channel.send('', {
                     file: "https://i.imgur.com/pIxQQXA.png",
@@ -75,12 +75,12 @@ beheeyem.on("message", msg => { // Fires when a message is sent that can be dete
                     file: "https://i.imgur.com/bAxMdQ0.png",
                     name: "Filename.jpeg.gif.webp.mp4.exe.bat.sh.app.png"
                 });
-            } else if (msg.author.id == 120887602395086848) { // Commands only to be fired by the bot's owner
+            } else if (msg.author.id == 111291959879983104) { // Commands only to be fired by the bot's owner
                 if (cmd == 'eval') {
                     try {
                         msg.channel.send("", {
                             embed: {
-                                title: '🖥 JavaScript Eval',
+                                title: 'ðŸ–¥ JavaScript Eval',
                                 fields: [{
                                         name: "Input",
                                         value: args
@@ -96,7 +96,7 @@ beheeyem.on("message", msg => { // Fires when a message is sent that can be dete
                     } catch (err) {
                         msg.channel.send("", {
                             embed: {
-                                title: '⚠ Error',
+                                title: 'âš  Error',
                                 fields: [{
                                         name: "Input",
                                         value: args
@@ -119,7 +119,7 @@ beheeyem.on("message", msg => { // Fires when a message is sent that can be dete
 });
 
 
-beheeyem.login(config.token);
+mew.login(config.token);
 
 function capitalizeFirstLetter(string) { // Simple function to capitalize the first letter in a string.
     return string.charAt(0).toUpperCase() + string.slice(1);
